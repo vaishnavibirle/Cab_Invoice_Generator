@@ -28,14 +28,15 @@ public class CabInvoiceGeneratorTest {
 
     //Taking multiple rides and calculating  total fare
     @Test
-    public void givenMultipleRides_ShouldReturnTotalFare() {
+    public void givenMultipleRides_ShouldReturnInvoiceSummary() {
         CabInvoiceGenerator cabInvoiceGenerator = new CabInvoiceGenerator();
         Ride[] rides = { new Ride(2.0,5),
                          new Ride(2.0,8),
                          new Ride(0.2,1),
                          new Ride(3.0,6)
                        };
-        double fare = cabInvoiceGenerator.calculateFare(rides);
-        Assertions.assertEquals(94,fare,0.0);
+        InvoiceSummary invoiceSummary = cabInvoiceGenerator.calculateFare(rides);
+        InvoiceSummary expectedInvoiceSummary = new InvoiceSummary(4,94);
+        Assertions.assertEquals(invoiceSummary,expectedInvoiceSummary);
     }
 }

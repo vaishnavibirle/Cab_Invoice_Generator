@@ -8,6 +8,7 @@ public class CabInvoiceGenerator {
     private static final double MINIMUM_FARE = 5;
 
     public static void main(String[] args) {
+
         System.out.println("****WELCOME TO CAB INVOICE GENERATOR****");
     }
 
@@ -20,13 +21,12 @@ public class CabInvoiceGenerator {
     }
 
     //Calculating total fare for multiple rides
-    public double calculateFare(Ride[] rides) {
+    public InvoiceSummary calculateFare(Ride[] rides) {
         double totalFare = 0;
         for (Ride ride : rides) {
             totalFare += this.calculateFare(ride.distance, ride.time);
         }
-        System.out.println("Total Fare: "+totalFare);
-        return totalFare;
+        return new InvoiceSummary(rides.length,totalFare);
     }
 }
 
